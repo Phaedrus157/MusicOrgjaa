@@ -2,18 +2,30 @@
 Organize large collection of music and strip junk files and empty folders.
 # Backing Track Folder Analyzer ���
 
-This Python script scans a root directory containing backing tracks to provide diagnostic metadata on folder and file structure. No files are modified during execution.
+A collection of Python tools for scanning, cleaning, and organizing a local music archive. 
+## 📄 License
+This project is public and open. No license or restrictions—use it, remix it, enjoy it. 🎧
 
-## Features
-- Counts subfolders and files
-- Identifies empty folders (no files or subdirectories)
-- Tallies file types based on extensions
-- Outputs summary statistics in human-friendly format
+## 📦 Included Scripts
 
-## Usage
+- **`mboxcnt.py`** — Analyzes the folder structure and contents of a music archive:
+  - Counts subfolders and total files
+  - Flags empty folders
+  - Breaks down file types by extension
+  - Outputs human-readable summary
+  - 🔹 Default path: `C:\Users\Public\Music`
 
-Edit the path in the script to point to your music directory:
+- **`drystrip.py`** *(coming soon)* — Performs a "dry run" preview of removable non-audio files:
+  - No deletion—just reports what would be purged
+  - Targets `.jpg`, `.ini`, and `.db` files
 
-```python
-music_root = r'D:\MUSICbox\BACKINGTRACKS'
+- **`strip.py`** *(coming soon)* — Removes clutter files from the archive with a live cleanup
+
+## 🧪 Usage
+
+```bash
+# Run with default path
 python mboxcnt.py
+
+# Run with a custom path
+python mboxcnt.py "D:\MUSICbox\BACKINGTRACKS"
