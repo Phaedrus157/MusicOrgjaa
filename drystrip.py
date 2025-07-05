@@ -1,30 +1,46 @@
 import os
+import sys
 
-# 🔍 Folder to scan
-music_root = r'D:\MUSICbox'
+# 📍 Target directory – from CLI or default to MUSICbox
+music_root = sys.argv[1] if len(sys.argv) > 1 else r'C:\Users\Public\Music'
 
-# 🧹 Extensions to target for stripping
+# 🧹 Extensions to preview for stripping (non-audio clutter)
 extensions_to_strip = {'.jpg', '.ini', '.db'}
 
-# 📋 Storage for matching file paths
-files_found = []
+# 📊 Tracking counters
+folder_count = 0
+file_count = 0
+empty_folder_count = 0
+files_matching = []
 
-print(f"\n🔎 Dry scan: Listing files that would be removed from {music_root}\n")
+print(f"\n🔍 Dry Run: Scanning for junk files in {music_root}\n")
 
-for dirpath, _, filenames in os.walk(music_root):
+# 🚶 Walk through directory tree
+for dirpath, dirnames, filenames in os.walk(music_root):
+    if dirpath != music_root:
+        folder_count += 1
+    file_count += len(filenames)
+
+    if not filenames and not dirnames:
+        empty_folder_count += 1
+
     for file in filenames:
         ext = os.path.splitext(file)[1].lower()
         if ext in extensions_to_strip:
             full_path = os.path.join(dirpath, file)
-            files_found.append(full_path)
+            files_matching.append(full_path)
 
-# 📊 Display results
-if files_found:
-    print("🗂️ Files marked for stripping:\n")
-    for path in files_found:
-        print(f"🗑️ {path}")
-    print(f"\n✅ {len(files_found)} file(s) would be removed.")
+# 🗂️ Report matched files
+if files_matching:
+    print("🗑️ Files that would be removed:")
+    for path in files_matching:
+        print(f"  {path}")
 else:
     print("✅ No matching files found. Clean as a whistle!")
 
-print("\n🚫 This was a dry run. No files were deleted.\n")
+# 📊 Summary Output
+print(f"\n📁 Folder count (excluding root): {folder_count}")
+print(f"🎵 Total file count: {file_count}")
+print(f"🕳️ Empty folders: {empty_folder_count}")
+print(f"\n🧹 {len(files_matching)} file(s) matched purge criteria.")
+print("\n✅ Dry scan complete. No files were removed.\n")
