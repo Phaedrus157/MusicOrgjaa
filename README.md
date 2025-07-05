@@ -6,7 +6,8 @@ A collection of Python tools for scanning, cleaning, and organizing a local musi
 ## 📄 License
 This project is public and open. No license or restrictions—use it, remix it, enjoy it. 🎧
 
-## 📦 Included Scripts
+## 📦 Included Scripts – Version 1.1.0
+
 
 - **`mboxcnt.py`** — Analyzes the folder structure and contents of a music archive:
   - Counts subfolders and total files
@@ -15,9 +16,10 @@ This project is public and open. No license or restrictions—use it, remix it, 
   - Outputs human-readable summary
   - 🔹 Default path: `C:\Users\Public\Music`
 
-- **`drystrip.py`** *(coming soon)* — Performs a "dry run" preview of removable non-audio files:
+- **`drystrip.py`** — Performs a "dry run" preview of removable non-audio files:
   - No deletion—just reports what would be purged
   - Targets `.jpg`, `.ini`, and `.db` files
+  - 🔹 Default path: `C:\Users\Public\Music`
 
 - **`strip.py`** *(coming soon)* — Removes clutter files from the archive with a live cleanup
 
